@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 
+import WeatherCard from './components/WeatherCard';
+
 function App() {
   const [city, setCity] = useState('');
   const [weatherInfo, setWeatherInfo] = useState([]);
@@ -60,16 +62,7 @@ function App() {
           <div className="weather-wrapper">
           {
             weatherInfo.map(weather => (
-              <div className="weather-card" key={weather.id}>
-                <h4>{weather.applicable_date}</h4>
-                <img 
-                  src={`https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`} 
-                  alt={weather.weather_state_name} 
-                />
-                <p><span>Humidity:</span> <span>{weather.humidity}°C</span></p>
-                <p><span>Min:</span> <span>{weather.min_temp.toFixed(2)}°C</span></p>
-                <p><span>Max:</span> <span>{weather.max_temp.toFixed(2)}°C</span></p>
-              </div>
+              <WeatherCard key={weather.id} weather={weather} />
             ))
           }
           </div>

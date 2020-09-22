@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
+import WeatherForm from './components/WeatherForm';
 import WeatherCard from './components/WeatherCard';
 
 function App() {
@@ -45,17 +46,12 @@ function App() {
   return (
     <main>
       <h1>Weather App</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <label className="form-label">City</label>
-        <input 
-          type="text" 
-          name="city" 
-          className="input" 
-          value={city} 
-          onChange={handleChange} 
-        />
-        <button className="button">{!loading ? 'Get Weather' : 'Fetching weather data...'}</button>
-      </form>
+      <WeatherForm 
+        city={city} 
+        loading={loading} 
+        handleChange={handleChange} 
+        handleSubmit={handleSubmit} 
+      />
       {error && <span className="error-message">{error.message}</span>}
       {
         !loading && (

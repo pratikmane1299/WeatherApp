@@ -1,3 +1,32 @@
 h1 {
   text-align: center;
 }
+
+input, label, button {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.form {
+  margin: 0 auto;
+  width: 40%;
+}
+
+.form-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.input {
+  padding: 0.5rem;
+}
+
+.button {
+  padding: 0.5rem;
+  background-color: #32fffb;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  border: 1px solid #32fffb;
+}

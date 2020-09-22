@@ -5,6 +5,7 @@ function App() {
   const [city, setCity] = useState('');
   const [weatherInfo, setWeatherInfo] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({});
 
   const handleChange = (e) => {
     setCity(e.target.value)
@@ -12,17 +13,31 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (city === '') { return }
+    
     setLoading(true);
     const locationRes = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${city}`);
     const locationJson = await locationRes.json();
     const location = locationJson[0];
+    if (location) {
+      const weatherRes = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${location.woeid}`);
+      const weatherJson = await weatherRes.json();
 
-    const weatherRes = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${location.woeid}`);
-    const weatherJson = await weatherRes.json();
-
-    setWeatherInfo(weatherJson.consolidated_weather);
+      if (weatherJson) {
+        setError(null);
+        setWeatherInfo(weatherJson.consolidated_weather);
+        setCity('');
+      } else {
+        setError({ message: 'Could not fetch weather data'});
+        setCity('');
+        setWeatherInfo([]);
+      }      
+    } else {
+      setError({ message: 'Location Not Found'});
+      setCity('');
+      setWeatherInfo([]);
+    }
     setLoading(false);
-    setCity('');
   }
 
   return (
@@ -39,6 +54,7 @@ function App() {
         />
         <button className="button">{!loading ? 'Get Weather' : 'Fetching weather data...'}</button>
       </form>
+      {error && <span className="error-message">{error.message}</span>}
       {
         !loading && (
           <div className="weather-wrapper">

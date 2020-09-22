@@ -30,3 +30,28 @@ input, label, button {
   font-weight: bold;
   border: 1px solid #32fffb;
 }
+
+.weather-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.weather-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 25.10% 0;
+  margin: 1rem;
+  padding: 1rem;
+  align-items: center;
+  border: 1px solid #eee;
+  box-shadow: 0 2px #ccc;
+  border-radius: 4px;
+}
+
+.weather-card img {
+  width: 50px;
+}

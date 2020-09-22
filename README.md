@@ -1,5 +1,7 @@
 # A simple weather app made with [react](https://reactjs.org)
 
+Live Demo [here](https://pratikmane1299.github.io/WeatherApp/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

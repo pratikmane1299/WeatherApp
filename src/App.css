@@ -54,6 +54,7 @@ input, label, button {
 
 .weather-card img {
   width: 50px;
+  cursor: pointer;
 }
 
 .error-message {
